@@ -14,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Accessors(chain = true)
 @Entity
-@Table(name = "employee", indexes = @Index(name = "idx_employee_email", columnList = "email", unique = true))
+@Table(name = "suppliers", indexes = @Index(name = "idx_employee_email", columnList = "email", unique = true))
 public class Supplier {
     @Id
     @Column(name = "supplier_id")
@@ -39,4 +39,8 @@ public class Supplier {
     @OneToOne(mappedBy = "supplier", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @PrimaryKeyJoinColumn
     private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "supplier_type_id")
+    private SupplierType supplierType;
 }

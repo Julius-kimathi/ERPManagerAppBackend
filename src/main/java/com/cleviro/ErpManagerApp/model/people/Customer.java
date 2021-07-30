@@ -14,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Accessors(chain = true)
 @Entity
-@Table(name = "employee", indexes = @Index(name = "idx_employee_email", columnList = "email", unique = true))
+@Table(name = "customers", indexes = @Index(name = "idx_employee_email", columnList = "email", unique = true))
 public class Customer {
     @Id
     @Column(name = "customer_id")

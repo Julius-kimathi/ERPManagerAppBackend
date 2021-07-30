@@ -13,7 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Accessors(chain = true)
-@Table(name = "store")
+@Table(name = "stores")
 public class Store {
     @Id
     @Column(name = "store_id")

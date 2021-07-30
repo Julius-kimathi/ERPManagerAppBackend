@@ -14,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Accessors(chain = true)
-@Table(name = "stores")
+@Table(name = "employment_types")
 public class EmploymentType {
     @Id
     @Column(name = "employment_type_id")

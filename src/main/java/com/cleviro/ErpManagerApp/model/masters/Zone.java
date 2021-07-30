@@ -12,7 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Accessors(chain = true)
-@Table(name = "zone")
+@Table(name = "zones")
 public class Zone {
     @Id
     @Column(name = "zone_id")

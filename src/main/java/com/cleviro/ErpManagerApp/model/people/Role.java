@@ -13,7 +13,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @Accessors(chain = true)
 @Entity
-@Table(name = "role")
+@Table(name = "roles")
 public class Role {
     @Id
     @Column(name = "role_id")

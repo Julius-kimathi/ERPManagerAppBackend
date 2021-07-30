@@ -76,10 +76,4 @@ public class Employee {
 
     @OneToMany(mappedBy = "supervisor", cascade = CascadeType.ALL)
     private Set<Employee> supervised;
-
-
-
-
-
-
 }

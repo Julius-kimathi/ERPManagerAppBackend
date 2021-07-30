@@ -15,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Accessors(chain = true)
 @Entity
-@Table(name = "company")
+@Table(name = "companies")
 public class Company {
     @Id
     @Column(name = "company_id")
@@ -59,9 +59,5 @@ public class Company {
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private Set<Employee> employees;
-
-
-
-
 
 }

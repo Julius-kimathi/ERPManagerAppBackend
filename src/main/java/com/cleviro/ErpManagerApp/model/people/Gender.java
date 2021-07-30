@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Accessors(chain = true)
-@Table(name = "store")
+@Table(name = "genders")
 public class Gender {
     @Id
     @Column(name = "gender_id")
