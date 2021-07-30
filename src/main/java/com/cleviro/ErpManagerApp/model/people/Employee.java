@@ -1,4 +1,85 @@
 package com.cleviro.ErpManagerApp.model.people;
 
+import com.cleviro.ErpManagerApp.model.masters.Company;
+import com.cleviro.ErpManagerApp.model.masters.Country;
+import com.cleviro.ErpManagerApp.model.masters.Department;
+import com.cleviro.ErpManagerApp.model.masters.Location;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+import javax.persistence.*;
+import java.util.Date;
+import java.util.Set;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@Accessors(chain = true)
+@Entity
+@Table(name = "employees", indexes = @Index(name = "idx_employee_email", columnList = "email", unique = true))
 public class Employee {
+    @Id
+    @Column(name = "employee_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String firstName;
+    private String middleName;
+    private String lastName;
+    private Date dob;
+    private String email;
+    private String phone;
+    private String phone1;
+    private String idNo;
+    private String postalAddress;
+    private String city;
+    private String state;
+    private String status;
+    private Date regDate;
+    private Date validityDate;
+    private String payrollNo;
+    @Enumerated(EnumType.STRING)
+    private Genders gender;
+
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id")
+    private Company company;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "country_id")
+    private Country country;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "location_id")
+    private Location location;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "designation_id")
+    private Designation designation;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employment_type_id")
+    private EmploymentType employmentType;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employee_id")
+    private Employee supervisor;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_id")
+    private Department department;
+
+    @OneToMany(mappedBy = "supervisor", cascade = CascadeType.ALL)
+    private Set<Employee> supervised;
+
+
+
+
+
+
 }

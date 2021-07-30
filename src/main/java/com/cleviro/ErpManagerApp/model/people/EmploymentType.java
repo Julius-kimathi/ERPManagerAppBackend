@@ -14,10 +14,10 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Accessors(chain = true)
-@Table(name = "customer_types")
-public class CustomerType {
+@Table(name = "stores")
+public class EmploymentType {
     @Id
-    @Column(name = "customer_type_id")
+    @Column(name = "employment_type_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Short id;
     private String name;
@@ -28,5 +28,5 @@ public class CustomerType {
     private Company company;
 
     @OneToMany(mappedBy = "employmentType", cascade = CascadeType.ALL)
-    private Set<Customer> customers;
+    private Set<Employee> employees;
 }

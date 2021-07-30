@@ -1,4 +1,5 @@
 package com.cleviro.ErpManagerApp.model.people;
 
-public class EmployeeType {
+public enum SupplierTypes {
+    CASH,CREDIT
 }
