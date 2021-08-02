@@ -111,7 +111,7 @@ public class UserServiceImpl implements UserService{
     }
 
 
-    /**
+    /*
      * Returns a new RuntimeException
      *
      * @param entityType

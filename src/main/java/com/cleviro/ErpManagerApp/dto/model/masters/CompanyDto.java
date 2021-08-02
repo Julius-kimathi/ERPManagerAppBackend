@@ -19,6 +19,7 @@ import java.util.Set;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CompanyDto {
+    private int id;
     private String name;
     private String postalAddress;
     private String state;

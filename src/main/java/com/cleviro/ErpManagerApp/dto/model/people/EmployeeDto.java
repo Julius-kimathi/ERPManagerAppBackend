@@ -40,10 +40,10 @@ public class EmployeeDto {
     private String state;
     private String status;
     private Date regDate;
-    private Date validityDate;
-    private String payrollNo;
     @Enumerated(EnumType.STRING)
     private Genders gender;
+    private Date validityDate;
+    private String payrollNo;
 
     private UserDto user;
     private CompanyDto company;
