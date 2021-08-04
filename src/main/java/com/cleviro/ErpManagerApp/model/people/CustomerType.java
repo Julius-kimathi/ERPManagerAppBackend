@@ -27,6 +27,6 @@ public class CustomerType {
     @JoinColumn(name = "company_id")
     private Company company;
 
-    @OneToMany(mappedBy = "employmentType", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customerType", cascade = CascadeType.ALL)
     private Set<Customer> customers;
 }

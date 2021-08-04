@@ -44,7 +44,7 @@ public class ZoneServiceImpl implements ZoneService{
 
     @Override
     public ZoneDto addZone(ZoneDto zoneDto) {
-        Optional<Zone> zone = Optional.ofNullable(zoneRepository.findbyName(zoneDto.getName()));
+        Optional<Zone> zone = Optional.ofNullable(zoneRepository.findByName(zoneDto.getName()));
         if (!zone.isPresent()){
             Zone zoneModel = new Zone()
                     .setName(zoneDto.getName())
@@ -76,6 +76,9 @@ public class ZoneServiceImpl implements ZoneService{
 
     @Override
     public void removeZone(int id) {
-
+        Optional<Zone> zone = zoneRepository.findById(id);
+        if (zone.isPresent())
+            zoneRepository.deleteById(id);
+        else throw ExceptionUtil.exception(EntityType.ZONE,ExceptionType.ENTITY_NOT_FOUND,String.valueOf(id));
     }
 }
