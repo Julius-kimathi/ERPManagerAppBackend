@@ -22,7 +22,7 @@ public class User {
 
     @Id
     @Column(name = "user_id")
-   // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String email;
     private String password;
@@ -33,19 +33,18 @@ public class User {
     @JoinTable(name = "user_roles", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name="role_id")})
     private Collection<Role> roles;
 
-     @OneToOne
-     @MapsId
-     @JoinColumn(name = "employee_id")
-     private Employee employee;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "customer_id")
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn
+    private Employee employee;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn
     private Customer customer;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "supplier_id")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn
     private Supplier supplier;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -62,7 +61,7 @@ public class User {
 
 
     @Enumerated(EnumType.STRING)
-    private UserType userType; //CUSTOMER,EMPLOYEE,SUPPLIERS
+    private UserType userType; //CUSTOMER,EMPLOYEE,SUPPLIER
 
 
     public String getFullName(){

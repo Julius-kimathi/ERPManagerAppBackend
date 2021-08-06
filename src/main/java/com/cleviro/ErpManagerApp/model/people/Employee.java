@@ -11,7 +11,6 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -22,7 +21,7 @@ import java.util.Set;
 public class Employee {
     @Id
     @Column(name = "employee_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String middleName;
@@ -42,8 +41,13 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     private Genders gender;
 
-    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "supervisorDetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @PrimaryKeyJoinColumn
+    private Supervisor supervisorDetails;
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -67,13 +71,10 @@ public class Employee {
     private EmploymentType employmentType;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id")
-    private Employee supervisor;
+    @JoinColumn(name = "supervisor_id")
+    private Supervisor supervisor;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
     private Department department;
-
-    @OneToMany(mappedBy = "supervisor", cascade = CascadeType.ALL)
-    private Set<Employee> supervised;
 }

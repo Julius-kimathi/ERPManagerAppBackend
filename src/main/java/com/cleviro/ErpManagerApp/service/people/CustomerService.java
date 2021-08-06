@@ -12,6 +12,17 @@ public interface CustomerService {
     CustomerDto findCustomerById(Long id);
 
     /**
+     * Get a customer by id
+     * @param idNo
+     */
+    CustomerDto findCustomerByIdNo(String idNo);
+    /**
+     * Get a customer by id
+     * @param email
+     */
+    CustomerDto findCustomerByEmail(String email);
+
+    /**
      * Find all the customers
      * @param
      */

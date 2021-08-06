@@ -36,6 +36,15 @@ public class SupplierServiceImpl implements SupplierService{
     }
 
     @Override
+    public SupplierDto findSupplierByEmail(String email) {
+        Optional<Supplier> supplier =supplierRepository.findByEmail(email);
+        if (supplier.isPresent())
+            return SupplierMapper.toSupplierDto(supplier.get());
+        else
+            throw ExceptionUtil.exception(EntityType.SUPPLIER, ExceptionType.ENTITY_NOT_FOUND,email);
+    }
+
+    @Override
     public Collection<SupplierDto> findAllSuppliers() {
         return StreamSupport.stream(supplierRepository.findAll().spliterator(), false)
                 .map(SupplierMapper::toSupplierDto)

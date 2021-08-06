@@ -12,6 +12,12 @@ public interface SupplierService {
     SupplierDto findSupplierById(Long id);
 
     /**
+     * Get a supplier by email address
+     * @param email
+     */
+    SupplierDto findSupplierByEmail(String email);
+
+    /**
      * Find all the suppliers
      * @param
      */
@@ -35,4 +41,5 @@ public interface SupplierService {
      * @param id
      */
     void removeSupplier(Long id);
+
 }

@@ -18,7 +18,7 @@ import java.util.Date;
 public class Supplier {
     @Id
     @Column(name = "supplier_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
@@ -36,8 +36,9 @@ public class Supplier {
     @JoinColumn(name = "country_id")
     private Country country;
 
-    @OneToOne(mappedBy = "supplier", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @PrimaryKeyJoinColumn
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)

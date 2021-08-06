@@ -11,6 +11,7 @@ import com.cleviro.ErpManagerApp.model.masters.Location;
 import com.cleviro.ErpManagerApp.model.people.Designation;
 import com.cleviro.ErpManagerApp.model.people.Employee;
 import com.cleviro.ErpManagerApp.model.people.EmploymentType;
+import com.cleviro.ErpManagerApp.model.people.Supervisor;
 import com.cleviro.ErpManagerApp.repository.people.EmployeeRepository;
 import com.cleviro.ErpManagerApp.util.ExceptionUtil;
 import org.modelmapper.ModelMapper;
@@ -39,6 +40,24 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
+    public EmployeeDto findEmployeeByIdNo(String idNo) {
+        Optional<Employee> employee = Optional.ofNullable(employeeRepository.findByIdNo(idNo));
+        if (employee.isPresent())
+            return EmployeeMapper.toEmployeeDto(employee.get());
+        else
+            throw ExceptionUtil.exception(EntityType.CUSTOMER, ExceptionType.ENTITY_NOT_FOUND,idNo);
+    }
+
+    @Override
+    public EmployeeDto findEmployeeByEmail(String email) {
+        Optional<Employee> employee = Optional.ofNullable(employeeRepository.findByEmail(email));
+        if (employee.isPresent())
+            return EmployeeMapper.toEmployeeDto(employee.get());
+        else
+            throw ExceptionUtil.exception(EntityType.CUSTOMER, ExceptionType.ENTITY_NOT_FOUND,email);
+    }
+
+    @Override
     public Collection<EmployeeDto> findAllEmployees() {
         return StreamSupport.stream(employeeRepository.findAll().spliterator(), false)
                 .map(EmployeeMapper::toEmployeeDto)
@@ -47,7 +66,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public EmployeeDto addEmployee(EmployeeDto employeeDto) {
-        Optional<Employee> employee = employeeRepository.findByEmail(employeeDto.getEmail());
+        Optional<Employee> employee = Optional.ofNullable(employeeRepository.findByEmail(employeeDto.getEmail()));
         if (!employee.isPresent()){
             Employee employeeModel = new Employee()
                     .setFirstName(employeeDto.getFirstName())
@@ -71,7 +90,7 @@ public class EmployeeServiceImpl implements EmployeeService{
                     .setLocation(modelMapper.map(employeeDto.getLocation(), Location.class))
                     .setDesignation(modelMapper.map(employeeDto.getDesignation(), Designation.class))
                     .setEmploymentType(modelMapper.map(employeeDto.getEmploymentType(), EmploymentType.class))
-                    .setSupervisor(modelMapper.map(employeeDto.getSupervisor(), Employee.class))
+                    .setSupervisor(modelMapper.map(employeeDto.getSupervisor(), Supervisor.class))
                     .setDepartment(modelMapper.map(employeeDto.getDepartment(), Department.class));
             return EmployeeMapper.toEmployeeDto(employeeRepository.save(employeeModel));
         }
@@ -104,7 +123,7 @@ public class EmployeeServiceImpl implements EmployeeService{
                     .setLocation(modelMapper.map(employeeDto.getLocation(), Location.class))
                     .setDesignation(modelMapper.map(employeeDto.getDesignation(), Designation.class))
                     .setEmploymentType(modelMapper.map(employeeDto.getEmploymentType(), EmploymentType.class))
-                    .setSupervisor(modelMapper.map(employeeDto.getSupervisor(), Employee.class))
+                    .setSupervisor(modelMapper.map(employeeDto.getSupervisor(), Supervisor.class))
                     .setDepartment(modelMapper.map(employeeDto.getDepartment(), Department.class));
             return EmployeeMapper.toEmployeeDto(employeeRepository.save(employeeModel));
         }

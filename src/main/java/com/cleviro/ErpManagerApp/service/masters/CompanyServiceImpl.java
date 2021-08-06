@@ -77,7 +77,7 @@ public class CompanyServiceImpl implements CompanyService{
     public CompanyDto updateCompany(CompanyDto companyDto) {
         Optional<Company> company = companyRepository.findById(companyDto.getId());
         if (company.isPresent()){
-            Company companyModel = new Company()
+            Company companyModel = company.get()
                     .setName(companyDto.getName())
                     .setPostalAddress(companyDto.getPostalAddress())
                     .setState(companyDto.getState())
@@ -105,6 +105,7 @@ public class CompanyServiceImpl implements CompanyService{
         }
         throw exception(EntityType.COMPANY, ExceptionType.ENTITY_NOT_FOUND,String.valueOf(id));
     }
+
 
     /**
      * Throw new RuntimeException

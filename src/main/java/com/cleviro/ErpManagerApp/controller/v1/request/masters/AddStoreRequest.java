@@ -14,6 +14,7 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AddStoreRequest {
+    private int id;
     @NotEmpty(message = "{constraints.NotEmpty.message}")
     private String name;
     private String status;

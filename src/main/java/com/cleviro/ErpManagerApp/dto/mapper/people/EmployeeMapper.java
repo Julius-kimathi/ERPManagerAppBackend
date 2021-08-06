@@ -4,15 +4,9 @@ import com.cleviro.ErpManagerApp.dto.model.masters.CompanyDto;
 import com.cleviro.ErpManagerApp.dto.model.masters.CountryDto;
 import com.cleviro.ErpManagerApp.dto.model.masters.DepartmentDto;
 import com.cleviro.ErpManagerApp.dto.model.masters.LocationDto;
-import com.cleviro.ErpManagerApp.dto.model.people.DesignationDto;
-import com.cleviro.ErpManagerApp.dto.model.people.EmployeeDto;
-import com.cleviro.ErpManagerApp.dto.model.people.EmploymentTypeDto;
-import com.cleviro.ErpManagerApp.dto.model.people.UserDto;
+import com.cleviro.ErpManagerApp.dto.model.people.*;
 import com.cleviro.ErpManagerApp.model.people.Employee;
 import org.modelmapper.ModelMapper;
-
-import java.util.HashSet;
-import java.util.stream.Collectors;
 
 public class EmployeeMapper {
     public static EmployeeDto toEmployeeDto(Employee employee){
@@ -40,8 +34,8 @@ public class EmployeeMapper {
                 .setLocation(new ModelMapper().map(employee.getLocation(), LocationDto.class))
                 .setDesignation(new ModelMapper().map(employee.getDesignation(), DesignationDto.class))
                 .setEmploymentType(new ModelMapper().map(employee.getEmploymentType(), EmploymentTypeDto.class))
-                .setSupervisor(new ModelMapper().map(employee.getSupervisor(), EmployeeDto.class))
+                .setSupervisor(new ModelMapper().map(employee.getSupervisor(), SupervisorDto.class))
                 .setDepartment(new ModelMapper().map(employee.getDepartment(), DepartmentDto.class))
-                .setSupervised(new HashSet<>(employee.getSupervised().stream().map(emp -> new ModelMapper().map(emp, EmployeeDto.class)).collect(Collectors.toSet())));
+                .setSupervisorDetails(new ModelMapper().map(employee.getSupervisorDetails(), SupervisorDto.class));
     }
 }

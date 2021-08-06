@@ -38,6 +38,25 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
+    public CustomerDto findCustomerByIdNo(String idNo) {
+        Optional<Customer> customer = Optional.ofNullable(customerRepository.findByIdNo(idNo));
+        if (customer.isPresent())
+            return CustomerMapper.toCustomerDto(customer.get());
+        else
+            throw ExceptionUtil.exception(EntityType.CUSTOMER, ExceptionType.ENTITY_NOT_FOUND,idNo);
+    }
+
+    @Override
+    public CustomerDto findCustomerByEmail(String email) {
+        Optional<Customer> customer = Optional.ofNullable(customerRepository.findByEmail(email));
+        if (customer.isPresent())
+            return CustomerMapper.toCustomerDto(customer.get());
+        else
+            throw ExceptionUtil.exception(EntityType.CUSTOMER, ExceptionType.ENTITY_NOT_FOUND,email);
+    }
+
+
+    @Override
     public Collection<CustomerDto> findAllCustomers() {
         return StreamSupport.stream(customerRepository.findAll().spliterator(), false)
                 .map(CustomerMapper::toCustomerDto)

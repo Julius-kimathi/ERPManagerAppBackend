@@ -16,7 +16,6 @@ import lombok.experimental.Accessors;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.util.Date;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -51,7 +50,7 @@ public class EmployeeDto {
     private LocationDto location;
     private DesignationDto designation;
     private EmploymentTypeDto employmentType;
-    private EmployeeDto supervisor;
+    private SupervisorDto supervisor;
+    private SupervisorDto supervisorDetails;
     private DepartmentDto department;
-    private Set<EmployeeDto> supervised;
 }

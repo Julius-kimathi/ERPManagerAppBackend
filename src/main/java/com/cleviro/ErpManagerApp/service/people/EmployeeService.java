@@ -12,6 +12,18 @@ public interface EmployeeService {
     EmployeeDto findEmployeeById(Long id);
 
     /**
+     * Get a employee by id
+     * @param idNo
+     */
+    EmployeeDto findEmployeeByIdNo(String idNo);
+
+    /**
+     * Get a employee by id
+     * @param email
+     */
+    EmployeeDto findEmployeeByEmail(String email);
+
+    /**
      * Find all the employees
      * @param
      */
@@ -35,4 +47,5 @@ public interface EmployeeService {
      * @param id
      */
     void removeEmployee(Long id);
+
 }

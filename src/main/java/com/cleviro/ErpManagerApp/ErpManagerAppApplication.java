@@ -22,7 +22,15 @@ public class ErpManagerAppApplication {
 	@Bean
 	CommandLineRunner init(RoleRepository roleRepository, UserRepository userRepository) {
 		return args -> {
-			//Create Admin and Passenger Roles
+
+			//Create SUPER_ADMIN,ADMIN & USER Roles
+			Role superadminRole = roleRepository.findByRole(UserRoles.SUPER_ADMIN);
+			if (superadminRole == null) {
+				superadminRole = new Role();
+				superadminRole.setRole(UserRoles.SUPER_ADMIN);
+				roleRepository.save(superadminRole);
+			}
+
 			Role adminRole = roleRepository.findByRole(UserRoles.ADMIN);
 			if (adminRole == null) {
 				adminRole = new Role();
@@ -37,6 +45,18 @@ public class ErpManagerAppApplication {
 				roleRepository.save(userRole);
 			}
 
+			//Create an SuperAdmin user
+			User superAdmin = userRepository.findByEmail("super-admin@gmail.com");
+			if (superAdmin == null) {
+				superAdmin = new User()
+						.setEmail("super-admin@gmail.com")
+						.setPassword("$2a$10$7PtcjEnWb/ZkgyXyxY1/Iei2dGgGQUbqIIll/dt.qJ8l8nQBWMbYO") // "123456"
+						.setFirstName("Julius")
+						.setLastName("Kimathi")
+						.setRoles(Arrays.asList(superadminRole));
+				userRepository.save(superAdmin);
+			}
+
 			//Create an Admin user
 			User admin = userRepository.findByEmail("admin@gmail.com");
 			if (admin == null) {
@@ -49,7 +69,7 @@ public class ErpManagerAppApplication {
 				userRepository.save(admin);
 			}
 
-			//Create a passenger user
+			//Create a normal user
 			User passenger = userRepository.findByEmail("user@gmail.com");
 			if (passenger == null) {
 				passenger = new User()

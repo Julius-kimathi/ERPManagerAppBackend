@@ -19,6 +19,7 @@ import java.util.Date;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AddSupplierRequest {
+    private Long id;
     @NotEmpty(message = "{constraints.NotEmpty.message}")
     private String name;
     @NotEmpty(message = "{constraints.NotEmpty.message}")

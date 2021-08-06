@@ -24,7 +24,7 @@ import java.util.List;
 import static com.cleviro.ErpManagerApp.security.SecurityConstants.*;
 
 /**
- * Created by Arpit Khandelwal.
+ * Created by Julius kimathi.
  */
 public class ApiJWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;

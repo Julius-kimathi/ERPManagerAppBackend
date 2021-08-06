@@ -22,6 +22,7 @@ import java.util.Date;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AddEmployeeRequest {
+    private Long id;
     @NotEmpty(message = "{constraints.NotEmpty.message}")
     private String firstName;
     @NotEmpty(message = "{constraints.NotEmpty.message}")

@@ -18,7 +18,7 @@ import java.util.Date;
 public class Customer {
     @Id
     @Column(name = "customer_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String middleName;
@@ -36,8 +36,9 @@ public class Customer {
     @Enumerated(EnumType.STRING)
     private Genders gender;
 
-    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @PrimaryKeyJoinColumn
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -24,7 +24,7 @@ public class UserController {
     @GetMapping
     @ApiOperation(value = "", authorizations = {@Authorization(value = "apiKey")})
     public Response getAllUsers(@RequestParam Optional<String> email) {
-        if (!email.isPresent()){
+        if (email.isEmpty()){
             return Response
                     .ok()
                     .setPayload(userService.findAllUsers());
@@ -99,7 +99,11 @@ public class UserController {
         return Response.badRequest().setErrors("Unable to update profile");
     }
 
-
+    @GetMapping(value = {"logout"})
+    public String logout() {
+        SecurityContextHolder.getContext().setAuthentication(null);
+        return "Successfully logged out";
+    }
 
 
 

@@ -17,4 +17,5 @@ public enum EntityType {
     GENDER,
     SUPPLIER,
     SUPPLIERTYPE,
+    SUPERVISOR
 }
