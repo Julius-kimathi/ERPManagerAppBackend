@@ -21,6 +21,7 @@ public class Location {
     @Column(name = "location_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String locationCode;
     private String name;
     private String abbreviation;
     private String postalAddress;
@@ -49,4 +50,7 @@ public class Location {
 
     @ManyToMany(mappedBy = "locations")
     private Set<User> users;  //All Users who have access to a location
+
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
+    private Set<ConsultationRate> consultationRates;
 }

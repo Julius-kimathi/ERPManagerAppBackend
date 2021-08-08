@@ -17,5 +17,11 @@ public enum EntityType {
     GENDER,
     SUPPLIER,
     SUPPLIERTYPE,
-    SUPERVISOR
+    SUPERVISOR,
+    PAYER,
+    VISIT,
+    PAYERACCOUNT,
+    SCHEME,
+    PLAN
+
 }

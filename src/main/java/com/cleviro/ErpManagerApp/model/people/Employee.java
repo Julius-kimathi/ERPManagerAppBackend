@@ -1,9 +1,6 @@
 package com.cleviro.ErpManagerApp.model.people;
 
-import com.cleviro.ErpManagerApp.model.masters.Company;
-import com.cleviro.ErpManagerApp.model.masters.Country;
-import com.cleviro.ErpManagerApp.model.masters.Department;
-import com.cleviro.ErpManagerApp.model.masters.Location;
+import com.cleviro.ErpManagerApp.model.masters.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +8,7 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -23,6 +21,7 @@ public class Employee {
     @Column(name = "employee_id")
    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String employeeCode;
     private String firstName;
     private String middleName;
     private String lastName;
@@ -77,4 +76,7 @@ public class Employee {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
     private Department department;
+
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+    private Set<ConsultationRate> consultationRates;
 }

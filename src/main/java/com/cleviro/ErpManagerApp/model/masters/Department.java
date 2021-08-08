@@ -33,4 +33,10 @@ public class Department {
 
     @ManyToMany(mappedBy = "departments")
     private Set<User> users;  //All Users who have access to a department
+
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+    private Set<ConsultationRate> consultationRates;
+
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+    private Set<DepartmentLimit> departmentLimits;
 }

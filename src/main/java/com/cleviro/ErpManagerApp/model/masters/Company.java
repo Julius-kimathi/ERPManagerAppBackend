@@ -21,6 +21,7 @@ public class Company {
     @Column(name = "company_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String companyCode;
     private String name;
     private String postalAddress;
     private String state;
