@@ -27,7 +27,7 @@ public class SchemeServiceImpl implements SchemeService{
     private SchemeRepository schemeRepository;
 
     @Override
-    public SchemeDto findCompanyById(int id) {
+    public SchemeDto findSchemeById(int id) {
         Optional<Scheme> scheme = schemeRepository.findById(id);
         if (scheme.isPresent())
             return SchemeMapper.toSchemeDto(scheme.get());

@@ -9,7 +9,7 @@ public interface SchemeService {
      * Get a scheme by id
      * @param id
      */
-    SchemeDto findCompanyById(int id);
+    SchemeDto findSchemeById(int id);
 
     /**
      * Find all the schemes

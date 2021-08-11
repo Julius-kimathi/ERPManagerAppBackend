@@ -5,6 +5,7 @@ import com.cleviro.ErpManagerApp.dto.model.masters.PlanDto;
 import com.cleviro.ErpManagerApp.exception.EntityType;
 import com.cleviro.ErpManagerApp.exception.ExceptionType;
 import com.cleviro.ErpManagerApp.model.masters.*;
+import com.cleviro.ErpManagerApp.repository.masters.DepartmentLimitRepository;
 import com.cleviro.ErpManagerApp.repository.masters.PlanRepository;
 import com.cleviro.ErpManagerApp.util.ExceptionUtil;
 import com.cleviro.ErpManagerApp.util.RandomStringUtil;
@@ -23,6 +24,8 @@ public class PlanServiceImpl implements PlanService{
     private ModelMapper modelMapper;
     @Autowired
     private PlanRepository planRepository;
+    @Autowired
+    private DepartmentLimitRepository departmentLimitRepository;
 
     @Override
     public PlanDto findPlanById(int id) {
@@ -61,7 +64,11 @@ public class PlanServiceImpl implements PlanService{
                     .setPayerAccount(modelMapper.map(planDto.getPayerAccount(), PayerAccount.class))
                     .setPlanCategory(modelMapper.map(planDto.getPlanCategory(), PlanCategory.class))
                     .setLimitCategory(modelMapper.map(planDto.getLimitCategory(), LimitCategory.class))
-                    .setCopayCategory(modelMapper.map(planDto.getCopayCategory(), CopayCategory.class));
+                    .setCopayCategory(modelMapper.map(planDto.getCopayCategory(), CopayCategory.class))
+                    .setDepartmentLimits(StreamSupport.stream(planDto.getDepartmentLimits().spliterator(),false)
+                            .map(departmentLimitDto -> modelMapper.map(departmentLimitDto,DepartmentLimit.class))
+                            .collect(Collectors.toSet()));
+
             return PlanMapper.toPlanDto(planRepository.save(planModel));
         }
         throw ExceptionUtil.exception(EntityType.PLAN, ExceptionType.DUPLICATE_ENTITY,planDto.toString());
@@ -87,7 +94,10 @@ public class PlanServiceImpl implements PlanService{
                     .setPayerAccount(modelMapper.map(planDto.getPayerAccount(), PayerAccount.class))
                     .setPlanCategory(modelMapper.map(planDto.getPlanCategory(), PlanCategory.class))
                     .setLimitCategory(modelMapper.map(planDto.getLimitCategory(), LimitCategory.class))
-                    .setCopayCategory(modelMapper.map(planDto.getCopayCategory(), CopayCategory.class));
+                    .setCopayCategory(modelMapper.map(planDto.getCopayCategory(), CopayCategory.class))
+                    .setDepartmentLimits(StreamSupport.stream(planDto.getDepartmentLimits().spliterator(),false)
+                            .map(departmentLimitDto -> modelMapper.map(departmentLimitDto,DepartmentLimit.class))
+                            .collect(Collectors.toSet()));
             return PlanMapper.toPlanDto(planRepository.save(planModel));
         }
         throw ExceptionUtil.exception(EntityType.PLAN, ExceptionType.ENTITY_NOT_FOUND,planDto.toString());
