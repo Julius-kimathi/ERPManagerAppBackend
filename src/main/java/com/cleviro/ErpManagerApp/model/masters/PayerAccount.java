@@ -1,5 +1,6 @@
 package com.cleviro.ErpManagerApp.model.masters;
 
+import com.cleviro.ErpManagerApp.model.patients.Visit;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,4 +34,6 @@ public class PayerAccount {
     private Payer payer;
     @OneToMany(mappedBy = "payerAccount", cascade = CascadeType.ALL)
     private Set<Plan> plans;
+    @OneToMany(mappedBy = "payerAccount", cascade = CascadeType.ALL)
+    private Set<Visit> visits;
 }

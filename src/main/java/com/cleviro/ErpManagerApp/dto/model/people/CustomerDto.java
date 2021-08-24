@@ -1,6 +1,9 @@
 package com.cleviro.ErpManagerApp.dto.model.people;
 
+import com.cleviro.ErpManagerApp.dto.model.masters.CompanyDto;
 import com.cleviro.ErpManagerApp.dto.model.masters.CountryDto;
+import com.cleviro.ErpManagerApp.dto.model.masters.LocationDto;
+import com.cleviro.ErpManagerApp.dto.model.patients.VisitDto;
 import com.cleviro.ErpManagerApp.model.people.Genders;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -12,7 +15,8 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -23,10 +27,11 @@ import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CustomerDto {
     private Long id;
+    private String customerCode;
     private String firstName;
     private String middleName;
     private String lastName;
-    private Date dob;
+    private LocalDate dob;
     private String email;
     private String phone;
     private String phone1;
@@ -35,11 +40,14 @@ public class CustomerDto {
     private String city;
     private String state;
     private String status;
-    private Date regDate;
+    private LocalDate regDate;
     @Enumerated(EnumType.STRING)
     private Genders gender;
 
     private UserDto user;
     private CountryDto country;
-    private CustomerTypeDto customerType;
+    private CompanyDto company;
+    private LocationDto location;
+    private Set<VisitDto> visits;
+    private Set<DependentDto> dependents;
 }

@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Getter
@@ -16,16 +16,14 @@ import java.math.BigDecimal;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AddConsultationRateRequest {
     private int id;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
+  //  @NotEmpty(message = "{constraints.NotEmpty.message}")
     private BigDecimal fees;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
     private Short consultationTypeId;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
     private Long doctorId;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
+    @NotNull(message = "{constraints.NotNull.message}")
     private Integer locationId;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
+    @NotNull(message = "{constraints.NotNull.message}")
     private Integer schemeId;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
+    @NotNull(message = "{constraints.NotNull.message}")
     private Short departmentId;
 }

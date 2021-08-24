@@ -17,7 +17,7 @@ import java.util.Date;
 @Table(name = "suppliers", indexes = @Index(name = "idx_employee_email", columnList = "email", unique = true))
 public class Supplier {
     @Id
-    @Column(name = "supplier_id")
+    @Column(name = "user_id")
    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String supplierCode;

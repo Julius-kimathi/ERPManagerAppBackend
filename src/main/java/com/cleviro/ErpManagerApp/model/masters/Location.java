@@ -1,5 +1,9 @@
 package com.cleviro.ErpManagerApp.model.masters;
 
+import com.cleviro.ErpManagerApp.model.patients.SubVisit;
+import com.cleviro.ErpManagerApp.model.patients.Visit;
+import com.cleviro.ErpManagerApp.model.people.Customer;
+import com.cleviro.ErpManagerApp.model.people.Dependent;
 import com.cleviro.ErpManagerApp.model.people.Employee;
 import com.cleviro.ErpManagerApp.model.people.User;
 import lombok.Getter;
@@ -48,9 +52,18 @@ public class Location {
     @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
     private Set<Employee> employees;
 
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
+    private Set<Customer> customers;
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
+    private Set<Dependent> dependents;
+
     @ManyToMany(mappedBy = "locations")
     private Set<User> users;  //All Users who have access to a location
 
     @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
     private Set<ConsultationRate> consultationRates;
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
+    private Set<Visit> visits;
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
+    private Set<SubVisit> subVisits;
 }

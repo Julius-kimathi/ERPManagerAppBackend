@@ -9,6 +9,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
 import java.util.Set;
 
@@ -26,7 +27,9 @@ public class User {
     private Long id;
     private String email;
     private String password;
+    @NotEmpty(message = "{constraints.NotEmpty.message}")
     private String firstName;
+    @NotEmpty(message = "Message cannot be empty")
     private String lastName;
     private String middleName;
     @ManyToMany(fetch = FetchType.LAZY)
@@ -42,6 +45,10 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @PrimaryKeyJoinColumn
     private Customer customer;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn
+    private Dependent dependent;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @PrimaryKeyJoinColumn

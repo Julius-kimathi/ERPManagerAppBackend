@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 @Getter
@@ -19,6 +20,6 @@ public class AddDesignationRequest {
     private String name;
     private String description;
 
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
+    @Min(value = 0, message = "{constraints.Min.message}")
     private int companyId;
 }

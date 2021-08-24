@@ -6,7 +6,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
@@ -25,22 +28,23 @@ public class AddPlanRequest {
     private BigDecimal copay;
     private BigDecimal overallLimit;
     private BigDecimal visitLimit;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
+    @NotNull(message = "{constraints.NotNull.message}")
     private LocalDate validityStartDate;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
+    @NotNull(message = "{constraints.NotNull.message}")
+    @Future
     private LocalDate validityEndDate;
     private Boolean status;
     private Boolean hasRegistrationFees;
     private Short subVisitPeriodInDays; //No of days until a visit ain't considered a followup
     private Boolean skipCopayForSubVisits;
 
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
+     @Min(value = 0,message = "{constraints.Min.message}")
     private Integer payerAccountId;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
+     @Min(value = 0,message = "{constraints.Min.message}")
     private Short planCategoryId;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
+     @Min(value = 0,message = "{constraints.Min.message}")
     private Short limitCategoryId;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
+     @Min(value = 0,message = "{constraints.Min.message}")
     private Short copayCategoryId;
     private Set<AddDepartmentLimitRequest> departmentLimitRequests;
 }

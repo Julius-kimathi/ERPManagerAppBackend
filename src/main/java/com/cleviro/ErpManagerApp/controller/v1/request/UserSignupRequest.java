@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import javax.validation.constraints.NotBlank;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Getter
@@ -18,18 +19,20 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserSignupRequest {
-    @NotBlank(message = "Email is mandatory")
+    @NotEmpty
+    @Email
     private String email;
-  @NotNull(message = "firstName can't be Null")
+    @NotEmpty
+    @Size(min = 2, message = "user name should have at least 2 characters")
     private String firstName;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
+  @NotEmpty
     private String lastName;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
     private String middleName;
-    @NotBlank(message = "Password is required")
-    @Size(min = 6, message = "Password must be longer than 6 characters")
+    @NotEmpty
+    @Size(min = 8, message = "password should have at least 8 characters")
     private String password;
 
+    @Enumerated(EnumType.STRING)
     private UserType userType;
 
 }

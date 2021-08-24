@@ -18,7 +18,7 @@ import java.util.Set;
 @Table(name = "employees", indexes = @Index(name = "idx_employee_email", columnList = "email", unique = true))
 public class Employee {
     @Id
-    @Column(name = "employee_id")
+    @Column(name = "user_id")
    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String employeeCode;

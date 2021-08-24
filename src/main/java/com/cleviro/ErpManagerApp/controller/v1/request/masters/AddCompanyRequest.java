@@ -35,6 +35,5 @@ public class AddCompanyRequest {
     private String orderPrefix;
 
 
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
     private int countryId;
 }

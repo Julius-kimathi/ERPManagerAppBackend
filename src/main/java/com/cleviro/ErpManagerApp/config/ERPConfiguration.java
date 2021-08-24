@@ -4,7 +4,9 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.NamingConventions;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -19,6 +21,7 @@ import java.util.Arrays;
 
 @Configuration
 @EnableSwagger2
+@Import(BeanValidatorPluginsConfiguration.class)
 public class ERPConfiguration {
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -40,9 +43,9 @@ public class ERPConfiguration {
      * Group BRS contains operations related to reservations and agency management
      */
     @Bean
-    public Docket swaggerBRSApi() {
+    public Docket swaggerERPApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("BRS")
+                .groupName("ERP")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.cleviro.ErpManagerApp.controller.v1.api"))
                 .paths(PathSelectors.any())

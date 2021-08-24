@@ -1,6 +1,6 @@
-package com.cleviro.ErpManagerApp.dto.model.people;
+package com.cleviro.ErpManagerApp.dto.model.patients;
 
-import com.cleviro.ErpManagerApp.dto.model.masters.CompanyDto;
+import com.cleviro.ErpManagerApp.model.patients.enums.DepartmentStatuses;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
@@ -9,7 +9,8 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
-import java.util.Set;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Getter
 @Setter
@@ -18,11 +19,10 @@ import java.util.Set;
 @ToString
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CustomerTypeDto {
-    private Short id;
-    private String name;
-    private String description;
+public class TriageDto {
+    private Long id;
+    @Enumerated(EnumType.STRING)
+    private DepartmentStatuses status;
 
-    private CompanyDto company;
-    private Set<CustomerDto> customers;
+    private VisitDto visit;
 }

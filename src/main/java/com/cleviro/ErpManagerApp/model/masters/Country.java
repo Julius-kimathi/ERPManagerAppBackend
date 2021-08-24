@@ -1,6 +1,7 @@
 package com.cleviro.ErpManagerApp.model.masters;
 
 import com.cleviro.ErpManagerApp.model.people.Customer;
+import com.cleviro.ErpManagerApp.model.people.Dependent;
 import com.cleviro.ErpManagerApp.model.people.Employee;
 import com.cleviro.ErpManagerApp.model.people.Supplier;
 import lombok.Getter;
@@ -36,6 +37,9 @@ public class Country {
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
     private Set<Customer> customers;
+
+    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
+    private Set<Dependent> dependents;
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
     private Set<Employee> employees;

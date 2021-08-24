@@ -39,7 +39,6 @@ public class CompanyDto {
     private Set<ZoneDto> zones;
     private Set<DesignationDto> designations; //CEO,ACCOUNTANTS,PROGRAMMERS,DOC,NURSE,SPECIALIST,RECEPTIONISTS,
     private Set<EmploymentTypeDto> employmentTypes; //PERMANENT,CONTRACT,COMMISSION
-    private Set<CustomerTypeDto> customerTypes;
     private Set<SupplierTypeDto> supplierTypes;
     private Set<EmployeeDto> employees;
 }

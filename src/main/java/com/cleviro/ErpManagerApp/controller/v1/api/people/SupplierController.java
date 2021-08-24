@@ -65,7 +65,6 @@ public class SupplierController {
                 .setState(addSupplierRequest.getState())
                 .setCity(addSupplierRequest.getCity())
                 .setStatus(addSupplierRequest.getStatus())
-                .setRegDate(addSupplierRequest.getRegDate())
                 .setWebsite(addSupplierRequest.getWebsite())
                 .setCountry(countryService.findCountryById(addSupplierRequest.getCountryId()))
                 .setSupplierType(supplierTypeService.findSupplierTypeById(addSupplierRequest.getSupplierTypeId()));
@@ -86,7 +85,6 @@ public class SupplierController {
                 .setState(addSupplierRequest.getState())
                 .setCity(addSupplierRequest.getCity())
                 .setStatus(addSupplierRequest.getStatus())
-                .setRegDate(addSupplierRequest.getRegDate())
                 .setWebsite(addSupplierRequest.getWebsite())
                 .setCountry(countryService.findCountryById(addSupplierRequest.getCountryId()))
                 .setSupplierType(supplierTypeService.findSupplierTypeById(addSupplierRequest.getSupplierTypeId()));

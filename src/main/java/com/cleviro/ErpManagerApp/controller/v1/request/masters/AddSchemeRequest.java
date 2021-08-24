@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 @Getter
@@ -18,9 +19,9 @@ public class AddSchemeRequest {
     @NotEmpty(message = "{constraints.NotEmpty.message}")
     private String name;
     private Boolean status;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
     private Boolean isPreauthRequired;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
+    @Min(value = 0,message = "{constraints.Min.message}")
     private Short schemeTypeId;
+    @Min(value = 0,message = "{constraints.Min.message}")
     private Integer payerId;
 }

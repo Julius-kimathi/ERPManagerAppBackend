@@ -5,7 +5,6 @@ import com.cleviro.ErpManagerApp.dto.model.people.CustomerDto;
 import com.cleviro.ErpManagerApp.dto.response.Response;
 import com.cleviro.ErpManagerApp.service.masters.CountryService;
 import com.cleviro.ErpManagerApp.service.people.CustomerService;
-import com.cleviro.ErpManagerApp.service.people.CustomerTypeService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +21,6 @@ public class CustomerController {
 
     @Autowired
     private CountryService countryService;
-
-    @Autowired
-    private CustomerTypeService customerTypeService;
 
     @GetMapping
     @ApiOperation(value = "", authorizations = {@Authorization(value = "apiKey")})
@@ -72,10 +68,8 @@ public class CustomerController {
                 .setState(addCustomerRequest.getState())
                 .setCity(addCustomerRequest.getCity())
                 .setStatus(addCustomerRequest.getStatus())
-                .setRegDate(addCustomerRequest.getRegDate())
                 .setGender(addCustomerRequest.getGender())
-                .setCountry(countryService.findCountryById(addCustomerRequest.getCountryId()))
-                .setCustomerType(customerTypeService.findCustomerTypeById(addCustomerRequest.getCustomerTypeId()));
+                .setCountry(countryService.findCountryById(addCustomerRequest.getCountryId()));
         return Response.ok().setPayload(customerService.addCustomer(customerDto));
     }
 
@@ -96,10 +90,8 @@ public class CustomerController {
                 .setState(addCustomerRequest.getState())
                 .setCity(addCustomerRequest.getCity())
                 .setStatus(addCustomerRequest.getStatus())
-                .setRegDate(addCustomerRequest.getRegDate())
                 .setGender(addCustomerRequest.getGender())
-                .setCountry(countryService.findCountryById(addCustomerRequest.getCountryId()))
-                .setCustomerType(customerTypeService.findCustomerTypeById(addCustomerRequest.getCustomerTypeId()));
+                .setCountry(countryService.findCountryById(addCustomerRequest.getCountryId()));
         return Response.ok().setPayload(customerService.updateCustomer(customerDto));
     }
 

@@ -30,8 +30,6 @@ public class AddLocationRequest {
     private String email1;
     private String status;
 
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
     private int companyId;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
     private int zoneId;
 }

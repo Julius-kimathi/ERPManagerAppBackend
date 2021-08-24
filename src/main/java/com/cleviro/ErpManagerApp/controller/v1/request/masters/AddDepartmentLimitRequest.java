@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 
 @Getter
@@ -16,10 +16,8 @@ import java.math.BigDecimal;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AddDepartmentLimitRequest {
     private Short id;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
+    @Min(value = 0, message = "{constraints.Min.message}")
     private Short departmentId;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
-    private Integer planId;
     private BigDecimal overallLimit;
     private BigDecimal visitLimit;
     private BigDecimal copay;

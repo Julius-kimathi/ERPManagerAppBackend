@@ -1,5 +1,6 @@
 package com.cleviro.ErpManagerApp.model.masters;
 
+import com.cleviro.ErpManagerApp.model.patients.Visit;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -49,4 +50,6 @@ public class Plan {
     private CopayCategory copayCategory;
     @OneToMany(mappedBy = "plan", cascade = CascadeType.ALL)
     private Set<DepartmentLimit> departmentLimits;
+    @OneToMany(mappedBy = "plan", cascade = CascadeType.ALL)
+    private Set<Visit> visits;
 }

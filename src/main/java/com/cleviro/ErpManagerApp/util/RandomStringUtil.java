@@ -36,12 +36,16 @@ public class RandomStringUtil {
              prefix = "CSTM-";
         else if (entityType.equals(EntityType.EMPLOYEE))
             prefix="EMPL";
+        else if (entityType.equals(EntityType.DEPENDENT))
+            prefix="DPNT";
         else if (entityType.equals(EntityType.PAYERACCOUNT))
             prefix="PACC";
         else if (entityType.equals(EntityType.SUPPLIER))
             prefix="SPLR";
         else if (entityType.equals(EntityType.VISIT))
             prefix="VSIT";
+        else if (entityType.equals(EntityType.SUBVISIT))
+            prefix="SVST";
         else if (entityType.equals(EntityType.COMPANY))
             prefix="CMPY";
         else if (entityType.equals(EntityType.LOCATION))
@@ -59,14 +63,17 @@ public class RandomStringUtil {
         return randomString;
     }
 
-    public static String generateRandomPassword(int len) {
-        String chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijk"
-                +"lmnopqrstuvwxyz!@#$%&";
+    public static String generateInvoiceNo(String prefix) {
+        String chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         Random rnd = new Random();
-        StringBuilder sb = new StringBuilder(len);
-        for (int i = 0; i < len; i++)
+        StringBuilder sb = new StringBuilder(6);
+        for (int i = 0; i < 6; i++)
             sb.append(chars.charAt(rnd.nextInt(chars.length())));
-        return sb.toString();
+        int year = ZonedDateTime.now(  ZoneId.of( "Africa/Nairobi" )  ).getYear() ;
+
+        String suffix = String.valueOf(year);
+        String invoiceNo = prefix.concat(sb.toString()).concat("-"+suffix);
+        return invoiceNo;
     }
 
     public void givenUsingJava8_whenGeneratingRandomAlphanumericString_thenCorrect() {

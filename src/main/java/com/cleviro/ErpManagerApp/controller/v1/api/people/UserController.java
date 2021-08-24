@@ -64,7 +64,7 @@ public class UserController {
 
     @PostMapping("/signup")
     @ApiOperation(value = "", authorizations = {@Authorization(value = "apiKey")})
-    public Response signup(@RequestBody @Valid UserSignupRequest userSignupRequest){
+    public Response signup(@Valid @RequestBody UserSignupRequest userSignupRequest){
 
         UserDto userDto = new UserDto()
                 .setUserType(userSignupRequest.getUserType())

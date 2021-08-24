@@ -17,12 +17,10 @@ public class AddCountryRequest {
     private int id;
     @NotEmpty(message = "{constraints.NotEmpty.message}")
     private String name;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
     private Short mobileCode;
     private String abbreviation;
     @NotEmpty(message = "{constraints.NotEmpty.message}")
     private String currency;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
     private Byte currencyCode;
     private Short currencySymbol;
 }

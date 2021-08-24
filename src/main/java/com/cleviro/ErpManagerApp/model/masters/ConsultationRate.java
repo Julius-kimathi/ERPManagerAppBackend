@@ -1,5 +1,6 @@
 package com.cleviro.ErpManagerApp.model.masters;
 
+import com.cleviro.ErpManagerApp.model.patients.Visit;
 import com.cleviro.ErpManagerApp.model.people.Employee;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -36,4 +38,6 @@ public class ConsultationRate {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
     private Department department;
+    @OneToMany(mappedBy = "consultationRate", cascade = CascadeType.ALL)
+    private Set<Visit> visits;
 }

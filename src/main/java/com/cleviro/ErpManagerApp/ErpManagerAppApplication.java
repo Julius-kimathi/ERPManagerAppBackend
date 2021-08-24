@@ -11,13 +11,19 @@ import com.cleviro.ErpManagerApp.repository.people.RoleRepository;
 import com.cleviro.ErpManagerApp.repository.people.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@EnableAutoConfiguration
+@ComponentScan
+@Configuration
 @SpringBootApplication
 public class ErpManagerAppApplication {
 
@@ -118,8 +124,6 @@ public class ErpManagerAppApplication {
 						new Salutation().setName("Rev."));
 				salutationRepository.saveAll(salutations);
 			}
-
-
 
 		};
 	}

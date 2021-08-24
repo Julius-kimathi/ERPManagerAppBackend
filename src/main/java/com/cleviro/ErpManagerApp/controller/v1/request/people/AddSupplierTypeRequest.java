@@ -19,6 +19,5 @@ public class AddSupplierTypeRequest {
     private String name;
     private String description;
 
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
     private int companyId;
 }

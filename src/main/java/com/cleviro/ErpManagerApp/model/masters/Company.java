@@ -1,5 +1,6 @@
 package com.cleviro.ErpManagerApp.model.masters;
 
+import com.cleviro.ErpManagerApp.model.patients.Visit;
 import com.cleviro.ErpManagerApp.model.people.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -53,12 +54,16 @@ public class Company {
     private Set<EmploymentType> employmentTypes; //PERMANENT,CONTRACT,COMMISSION
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-    private Set<CustomerType> customerTypes;
-
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private Set<SupplierType> supplierTypes;
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private Set<Employee> employees;
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    private Set<Customer> customers;
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    private Set<Dependent> dependents;
+
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    private Set<Visit> visits;
 
 }

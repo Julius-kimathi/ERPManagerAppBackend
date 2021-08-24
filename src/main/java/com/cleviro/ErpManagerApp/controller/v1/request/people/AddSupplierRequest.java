@@ -1,17 +1,13 @@
 package com.cleviro.ErpManagerApp.controller.v1.request.people;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -34,14 +30,9 @@ public class AddSupplierRequest {
     @NotEmpty(message = "{constraints.NotEmpty.message}")
     private String city;
     private String status;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @NotNull(message = "{constraints.NotEmpty.message}")
-    @Temporal(TemporalType.DATE)
-    private Date regDate;
     private String website;
 
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
     private int countryId;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
+    @Min(value = 0, message = "{constraints.Min.message}")
     private Short supplierTypeId;
 }

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 @Getter
@@ -21,8 +22,8 @@ public class AddPayerAccountRequest {
     private String phone;
     private String address;
     private Boolean status;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
+    @Min(value = 0,message = "{constraints.Min.message}")
     private Integer schemeId; //eg AAR FFS,AAR CAPITATION,BRITAM FFS,BRITAM CAPITATION ETC
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
+    @Min(value = 0,message = "{constraints.Min.message}")
     private Integer payerId;
 }

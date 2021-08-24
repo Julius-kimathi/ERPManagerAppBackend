@@ -10,11 +10,11 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import java.util.Date;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -24,16 +24,16 @@ import java.util.Date;
 public class AddCustomerRequest {
     private Long id;
     @NotEmpty(message = "{constraints.NotEmpty.message}")
+    @Pattern(regexp="[a-z]*", flags = Pattern.Flag.CASE_INSENSITIVE)
     private String firstName;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
     private String middleName;
     @NotEmpty(message = "{constraints.NotEmpty.message}")
     private String lastName;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @NotNull(message = "{constraints.NotEmpty.message}")
-    @Temporal(TemporalType.DATE)
-    private Date dob;
+    @Past(message = "{constraints.Past.message}")
+    private LocalDate dob;
     @NotEmpty(message = "{constraints.NotEmpty.message}")
+    @Email(message = "{constraints.Email.message}")
     private String email;
     @NotEmpty(message = "{constraints.NotEmpty.message}")
     private String phone;
@@ -44,17 +44,10 @@ public class AddCustomerRequest {
     private String city;
     private String state;
     private String status;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @NotNull(message = "{constraints.NotEmpty.message}")
-    @Temporal(TemporalType.DATE)
-    private Date regDate;
     @Enumerated(EnumType.STRING)
     private Genders gender;
 
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
     private int countryId;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
     private Short customerTypeId;
-
-
+    private Integer locationId;
 }

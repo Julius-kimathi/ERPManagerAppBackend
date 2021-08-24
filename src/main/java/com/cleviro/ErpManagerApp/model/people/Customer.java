@@ -1,20 +1,24 @@
 package com.cleviro.ErpManagerApp.model.people;
 
+import com.cleviro.ErpManagerApp.model.masters.Company;
 import com.cleviro.ErpManagerApp.model.masters.Country;
+import com.cleviro.ErpManagerApp.model.masters.Location;
+import com.cleviro.ErpManagerApp.model.patients.Visit;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Accessors(chain = true)
 @Entity
-@Table(name = "customers", indexes = @Index(name = "idx_employee_email", columnList = "email", unique = true))
+@Table(name = "customers", indexes = @Index(name = "idx_customer_email", columnList = "email", unique = true))
 public class Customer {
     @Id
     @Column(name = "customer_id")
@@ -24,7 +28,7 @@ public class Customer {
     private String firstName;
     private String middleName;
     private String lastName;
-    private Date dob;
+    private LocalDate dob;
     private String email;
     private String phone;
     private String phone1;
@@ -33,7 +37,7 @@ public class Customer {
     private String city;
     private String state;
     private String status;
-    private Date regDate;
+    private LocalDate regDate;
     @Enumerated(EnumType.STRING)
     private Genders gender;
 
@@ -45,8 +49,16 @@ public class Customer {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id")
     private Country country;
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_type_id")
-    private CustomerType customerType;
+    @JoinColumn(name = "company_id")
+    private Company company;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "location_id")
+    private Location location;
+
+    @OneToMany(mappedBy = "principal", cascade = CascadeType.ALL)
+    private Set<Dependent> dependents;
+
+    @OneToMany(mappedBy = "principal", cascade = CascadeType.ALL)
+    private Set<Visit> visits;
 }

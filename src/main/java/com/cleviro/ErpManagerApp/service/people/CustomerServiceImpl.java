@@ -6,7 +6,6 @@ import com.cleviro.ErpManagerApp.exception.EntityType;
 import com.cleviro.ErpManagerApp.exception.ExceptionType;
 import com.cleviro.ErpManagerApp.model.masters.Country;
 import com.cleviro.ErpManagerApp.model.people.Customer;
-import com.cleviro.ErpManagerApp.model.people.CustomerType;
 import com.cleviro.ErpManagerApp.repository.people.CustomerRepository;
 import com.cleviro.ErpManagerApp.util.ExceptionUtil;
 import org.modelmapper.ModelMapper;
@@ -84,8 +83,7 @@ public class CustomerServiceImpl implements CustomerService{
                        .setStatus(customerDto.getStatus())
                        .setRegDate(customerDto.getRegDate())
                        .setGender(customerDto.getGender())
-                       .setCountry(modelMapper.map(customerDto.getCountry(), Country.class))
-                       .setCustomerType(modelMapper.map(customerDto.getCustomerType(), CustomerType.class));
+                       .setCountry(modelMapper.map(customerDto.getCountry(), Country.class));
                return CustomerMapper.toCustomerDto(customerRepository.save(customerModel));
             }
             throw ExceptionUtil.exception(EntityType.CUSTOMER, ExceptionType.DUPLICATE_ENTITY,customerDto.getIdNo());
@@ -112,8 +110,7 @@ public class CustomerServiceImpl implements CustomerService{
                     .setStatus(customerDto.getStatus())
                     .setRegDate(customerDto.getRegDate())
                     .setGender(customerDto.getGender())
-                    .setCountry(modelMapper.map(customerDto.getCountry(), Country.class))
-                    .setCustomerType(modelMapper.map(customerDto.getCustomerType(), CustomerType.class));
+                    .setCountry(modelMapper.map(customerDto.getCountry(), Country.class));
             return CustomerMapper.toCustomerDto(customerRepository.save(customerModel));
         }
         throw ExceptionUtil.exception(EntityType.CUSTOMER, ExceptionType.ENTITY_NOT_FOUND,customerDto.getIdNo(), customerDto.getEmail());

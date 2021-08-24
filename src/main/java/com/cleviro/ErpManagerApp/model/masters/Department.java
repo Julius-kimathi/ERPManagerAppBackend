@@ -1,5 +1,6 @@
 package com.cleviro.ErpManagerApp.model.masters;
 
+import com.cleviro.ErpManagerApp.model.billing.DepartmentBill;
 import com.cleviro.ErpManagerApp.model.people.Employee;
 import com.cleviro.ErpManagerApp.model.people.User;
 import lombok.Getter;
@@ -39,4 +40,7 @@ public class Department {
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
     private Set<DepartmentLimit> departmentLimits;
+
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+    private Set<DepartmentBill> departmentBills;
 }
