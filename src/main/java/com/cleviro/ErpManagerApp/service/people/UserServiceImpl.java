@@ -5,6 +5,7 @@ import com.cleviro.ErpManagerApp.dto.model.people.UserDto;
 import com.cleviro.ErpManagerApp.exception.ERPException;
 import com.cleviro.ErpManagerApp.exception.EntityType;
 import com.cleviro.ErpManagerApp.exception.ExceptionType;
+import com.cleviro.ErpManagerApp.model.masters.Location;
 import com.cleviro.ErpManagerApp.model.people.Role;
 import com.cleviro.ErpManagerApp.model.people.User;
 import com.cleviro.ErpManagerApp.model.people.UserRoles;
@@ -108,6 +109,26 @@ public class UserServiceImpl implements UserService{
             return UserMapper.toUserDto(userRepository.save(userModel));
         }
         throw  exception(EntityType.USER,ExceptionType.ENTITY_NOT_FOUND, userDto.getEmail());
+    }
+
+    @Override
+    public Set<Location> getGrantedLocations(String email) {
+        User userModel;
+        Optional user = Optional.ofNullable(userRepository.findByEmail(email));
+        if (user.isPresent()) {
+            userModel = (User) user.get();
+            return userModel.getLocations();
+        }
+        else
+            return null;
+    }
+
+    @Override
+    public User findApplicationUserByEmail(String email) {
+       Optional<User> user = Optional.ofNullable(userRepository.findByEmail(email));
+       if (user.isPresent())
+           return user.get();
+       else return new User();
     }
 
 

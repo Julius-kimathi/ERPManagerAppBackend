@@ -6,5 +6,5 @@ public interface SecurityConstants {
     String HEADER_STRING = "Authorization";
     String SIGN_UP_URL = "/users/sign-up";
     //long EXPIRATION_TIME = 864_000_000; // 10 days
-    long EXPIRATION_TIME = 86_400; // 1 day
+    long EXPIRATION_TIME = 86_400_000; // 1 day
 }

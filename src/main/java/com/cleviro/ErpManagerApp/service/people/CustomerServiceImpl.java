@@ -8,24 +8,22 @@ import com.cleviro.ErpManagerApp.model.masters.Country;
 import com.cleviro.ErpManagerApp.model.people.Customer;
 import com.cleviro.ErpManagerApp.repository.people.CustomerRepository;
 import com.cleviro.ErpManagerApp.util.ExceptionUtil;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-@Component
+@Service @RequiredArgsConstructor @Transactional @Slf4j
 public class CustomerServiceImpl implements CustomerService{
 
-    @Autowired
     private ModelMapper modelMapper;
-
-    @Autowired
     private CustomerRepository customerRepository;
-
 
     @Override
     public CustomerDto findCustomerById(Long id) {

@@ -2,13 +2,21 @@ package com.cleviro.ErpManagerApp.exception;
 
 
 import com.cleviro.ErpManagerApp.dto.response.Response;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Created by Arpit Khandelwal.
@@ -32,7 +40,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     }
 
     // error handle for @Valid
-   /* @Override
+    @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers,
                                                                   HttpStatus status, WebRequest request) {
@@ -42,15 +50,17 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         body.put("status", status.value());
 
         //Get all errors
-        List<String> errors = ex.getBindingResult()
-                .getFieldErrors()
-                .stream()
-                .map(x -> x.getDefaultMessage())
-                .collect(Collectors.toList());
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+
+            String fieldName = ((FieldError) error).getField();
+            String message = error.getDefaultMessage();
+            errors.put(fieldName, message);
+        });
 
         body.put("errors", errors);
 
         return new ResponseEntity<>(body, headers, status);
 
-    }*/
+    }
 }

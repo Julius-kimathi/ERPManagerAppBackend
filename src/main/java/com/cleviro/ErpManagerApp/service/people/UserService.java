@@ -1,6 +1,8 @@
 package com.cleviro.ErpManagerApp.service.people;
 
 import com.cleviro.ErpManagerApp.dto.model.people.UserDto;
+import com.cleviro.ErpManagerApp.model.masters.Location;
+import com.cleviro.ErpManagerApp.model.people.User;
 
 import java.util.Set;
 
@@ -54,4 +56,8 @@ public interface UserService {
      * @return
      */
     UserDto changePassword(UserDto userDto, String newPassword);
+
+    Set<Location> getGrantedLocations(String email);
+
+    User findApplicationUserByEmail(String email);
 }

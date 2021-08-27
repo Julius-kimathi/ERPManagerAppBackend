@@ -1,6 +1,7 @@
 package com.cleviro.ErpManagerApp.controller.v1.request;
 
 import com.cleviro.ErpManagerApp.model.people.UserType;
+import com.cleviro.ErpManagerApp.validation.ValueOfEnum;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -15,14 +17,14 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserUpdateRequest {
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
+    @NotEmpty
     private String email;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
+    @NotEmpty
     private String firstName;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
+    @NotEmpty
     private String lastName;
-    @NotEmpty(message = "{constraints.NotEmpty.message}")
     private String middleName;
 
-    private UserType userType;
+    @NotNull @ValueOfEnum(enumClass = UserType.class)
+    private String userTypeString;
 }

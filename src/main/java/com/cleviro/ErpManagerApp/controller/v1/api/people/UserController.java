@@ -2,12 +2,15 @@ package com.cleviro.ErpManagerApp.controller.v1.api.people;
 
 import com.cleviro.ErpManagerApp.controller.v1.request.UserSignupRequest;
 import com.cleviro.ErpManagerApp.controller.v1.request.UserUpdateRequest;
+import com.cleviro.ErpManagerApp.controller.v1.request.people.LoginRequest;
 import com.cleviro.ErpManagerApp.dto.model.people.UserDto;
 import com.cleviro.ErpManagerApp.dto.response.Response;
+import com.cleviro.ErpManagerApp.model.people.UserType;
 import com.cleviro.ErpManagerApp.service.people.UserService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -61,13 +64,16 @@ public class UserController {
             return Response.badRequest().setErrors("User not found");
     }*/
 
+    @PostMapping(value ="/auth/login")
+    public void signup(@Valid @RequestBody LoginRequest loginRequest){
 
-    @PostMapping("/signup")
-    @ApiOperation(value = "", authorizations = {@Authorization(value = "apiKey")})
+    }
+
+    @PostMapping(value ="/signup", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Response signup(@Valid @RequestBody UserSignupRequest userSignupRequest){
 
         UserDto userDto = new UserDto()
-                .setUserType(userSignupRequest.getUserType())
+                .setUserType(UserType.valueOf(userSignupRequest.getUserTypeString().toUpperCase()))
                 .setEmail(userSignupRequest.getEmail())
                 .setFirstName(userSignupRequest.getFirstName())
                 .setLastName(userSignupRequest.getLastName())
@@ -91,7 +97,7 @@ public class UserController {
                     .setMiddleName(userUpdateRequest.getMiddleName())
                     .setLastName(userUpdateRequest.getLastName())
                    // .setEmail(userUpdateRequest.getEmail())
-                    .setUserType(userUpdateRequest.getUserType());
+                    .setUserType(UserType.valueOf(userUpdateRequest.getUserTypeString().toUpperCase()));
 
            return Response.ok().setPayload(userService.updateProfile(newUserDto));
 

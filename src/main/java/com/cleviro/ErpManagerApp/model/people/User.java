@@ -54,15 +54,15 @@ public class User {
     @PrimaryKeyJoinColumn
     private Supplier supplier;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_locations", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name="location_id")})
     private Set<Location> locations;  //User has access to these locations
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_stores", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name="store_id")})
     private Set<Store> stores;  //User has access to these stores
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_departments", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name="department_id")})
     private Set<Department> departments;  //User has access to these departments
 
@@ -72,7 +72,7 @@ public class User {
 
 
     public String getFullName(){
-        return firstName != null && middleName != null ? firstName.concat(" ").concat(middleName).concat(" ").concat(lastName) : "";
+        return firstName != null && lastName != null && middleName != null ? firstName.concat(" ").concat(middleName).concat(" ").concat(lastName) : firstName.concat(" ").concat(lastName);
     }
 
 }

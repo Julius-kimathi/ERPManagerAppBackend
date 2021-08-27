@@ -153,10 +153,10 @@
 
 
         <!--For audit trails -->
-        <dependency>
+       <!-- <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-envers</artifactId>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
     <build>
